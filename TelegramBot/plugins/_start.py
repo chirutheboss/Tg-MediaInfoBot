@@ -17,7 +17,7 @@ START_BUTTON = [
     ],
     [
         InlineKeyboardButton(
-            "🔭 DEVELOPER", url="@chiru_wayne"
+            "🔭 DEVELOPER", url="https://t.me/chiru_wayne"
         )
     ],
 ]
