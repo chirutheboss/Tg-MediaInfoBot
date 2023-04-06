@@ -23,11 +23,11 @@ from TelegramBot.helpers.gdrivehelper import GoogleDriveHelper
 
 async def slowpics_collection(message, file_name, path):
     """
-    Uploads image(s) to https://slow.pics/ from a specified directory.
+    😄Uploads image(s) to https://slow.pics/ from a specified directory😄.
     """
 
     msg = await message.reply_text(
-        "uploading generated screenshots to slow.pics.", quote=True)
+        "😄uploading generated screenshots to slow.pics.😄", quote=True)
 
     img_list = os.listdir(path)
     img_list = sorted(img_list)
@@ -69,7 +69,7 @@ async def generate_ss_from_file(
     message, replymsg, file_name, frame_count, file_duration
 ):
     """
-    Generates screenshots from partially/fully downloaded files using ffmpeg.
+    Generates screenshots from partially/fully downloaded files....
     """
 
     await replymsg.edit(
@@ -111,7 +111,7 @@ async def generate_ss_from_link(
     timestamp,
 ):
     """
-    Generates screenshots from direct download links using ffmpeg.
+    Generates screenshots from direct download links.
     """
 
     await replymsg.edit(
@@ -135,11 +135,11 @@ async def generate_ss_from_link(
 
 async def gdrive_screenshot(message, url, time, frame_count, fps, hdr, dv):
     """
-    Generates Screenshots From Google Drive link.
+    🤩Generates Screenshots From Google Drive link🤩.
     """
 
     replymsg = await message.reply_text(
-        "Checking your given gdrive link...", quote=True)
+        "🙈Checking your given gdrive link...🙈", quote=True)
     try:
         drive = GoogleDriveHelper()
         metadata = drive.get_metadata(url)
@@ -185,12 +185,12 @@ async def gdrive_screenshot(message, url, time, frame_count, fps, hdr, dv):
     except Exception as error:
         LOGGER(__name__).error(f"{error}{url}")
         return await replymsg.edit(
-            "Something went wrong while processing gdrive link. Make sure that the gdrive link is public and not rate limited. ")
+            "😓Something went wrong while processing gdrive link. Make sure that the gdrive link is public and not rate limited😓. ")
 
 
 async def ddl_screenshot(message, url, time, frame_count, fps, hdr, dv):
     """
-    Generates Screenshots from Direct Download link.
+    😎Generates Screenshots from Direct Download link😎.
     """
 
     replymsg = await message.reply_text(
@@ -236,20 +236,20 @@ async def ddl_screenshot(message, url, time, frame_count, fps, hdr, dv):
     except Exception as error:
         LOGGER(__name__).error(f"{error}{url}")
         return await replymsg.edit(
-            "Something went wrong! make sure that the url is direct download video url.")
+            "😟Something went wrong! make sure that the url is direct download video url😟.")
 
 
 async def telegram_screenshot(client, message, frame_count):
     """
-    Generates Screenshots from Telegram Video File.
+    😎Generates Screenshots from Telegram Video File😎.
     """
 
     replymsg = await message.reply_text(
-        "Generating screenshots from Telegram file, please wait...", quote=True)
+        "😎Generating screenshots from Telegram file, please wait...😎", quote=True)
     try:
         message = message.reply_to_message
         if message.text:
-            return await replymsg.edit("Reply to a proper video file to generate screenshots.")
+            return await replymsg.edit("🤐Reply to a proper video file to generate screenshots🤐.")
 
         if message.media.value == "video":
             media = message.video
@@ -267,7 +267,7 @@ async def telegram_screenshot(client, message, frame_count):
 
         if message.media.value == "document" and "video" not in mime:
             return await replymsg.edit(
-                "can only generate screenshots from video file.", quote=True)
+                "🤕can only generate screenshots from video file🤕.", quote=True)
 
         # limit of partial file to be downloaded for generating screenshots ( i.e, 150mb).
         download_limit: int = 150 * 1024 * 1024
@@ -306,7 +306,7 @@ async def telegram_screenshot(client, message, frame_count):
     except Exception as error:
         LOGGER(__name__).error(error)
         return await replymsg.edit(
-            "Something went wrong while generating screenshots from Telegram file.")
+            "😣Something went wrong while generating screenshots from Telegram file.😣")
 
 
 screenshot_help = """Generates screenshots from Google Drive links, Telegram files, or direct download links.
@@ -371,4 +371,4 @@ async def screenshot(client: Client, message: Message):
         url = url_match.group(0)
         return await ddl_screenshot(message, url, time, frame_count, fps, hdr, dv)
     return await message.reply_text(
-        "This type of link is not supported.", quote=True)
+        "🥴️This type of link is not supported🥴️.", quote=True)
