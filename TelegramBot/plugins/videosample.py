@@ -35,11 +35,11 @@ async def generate_videosample_from_link(
     timestamp,
 ):
     """
-    Generates video sample from direct download link using ffmpeg.
+    😎Generates video sample from direct download link 😎.
     """
 
     await replymsg.edit(
-        f"Generating {duration} min video sample from `{unquote(filename)}`, please wait ...")
+        f"😋Generating {duration} min video sample from `{unquote(filename)}`, please wait ...😋")
     original_name = filename
     filename = filename.replace(" ", ".")
 
@@ -139,7 +139,7 @@ async def ddl_videosample(message, url, duration):
     except Exception as error:
         LOGGER(__name__).error(error)
         return await replymsg.edit(
-            "Something went wrong! Make sure that the URL is direct download video file link.")
+            "🤕Something went wrong! Make sure that the URL is direct download video file link🤕.")
 
 
 async def telegram_videosample(message, client, duration):
@@ -151,7 +151,7 @@ async def telegram_videosample(message, client, duration):
         message = message.reply_to_message
         if message.text:
             return await message.reply_text(
-                "Reply to a proper video file to Generate sample.", quote=True)
+                "😒Reply to a proper video file to Generate sample😒.", quote=True)
 
         if message.media.value == "video":
             media = message.video
@@ -255,7 +255,7 @@ async def videosample_duration(client, CallbackQuery):
 @Client.on_message(filters.command(["sample", "trim"]) & check_auth)
 async def video_sample(client: Client, message: Message):
     """
-    Generates video sample from Google Drive links, Telegram files or direct download links.
+    🤓Generates video sample from Google Drive links, Telegram files or direct download links🤓.
     """
 
     if message.reply_to_message:
@@ -299,4 +299,4 @@ async def video_sample(client: Client, message: Message):
             reply_markup=InlineKeyboardMarkup(sample_duration),
             quote=True)
     return await message.reply_text(
-        "This type of link is not supported.", quote=True)
+        "😕This type of link is not supported😕.", quote=True)
