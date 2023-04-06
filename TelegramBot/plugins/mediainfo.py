@@ -24,11 +24,11 @@ from TelegramBot.helpers.gdrivehelper import GoogleDriveHelper
 
 async def gdrive_mediainfo(message, url, isRaw):
     """
-    Generates Mediainfo from a Google Drive file.
+    😊Generates Mediainfo from a Google Drive file😊.
     """
 
     reply_msg = await message.reply_text(
-        "Generating Mediainfo, Please wait...", quote=True)
+        "Generating Mediainfo, Please wait...🤭", quote=True)
     try:
         GD = GoogleDriveHelper()
         metadata = GD.get_metadata(url)
@@ -97,16 +97,16 @@ async def gdrive_mediainfo(message, url, isRaw):
     except Exception as error:
         LOGGER(__name__).error(error)        
         return await reply_msg.edit(
-            "Something went wrong while processing Gdrive link.\n\n (Make sure that the gdrive link is not rate limited, is public link and not a folder)")
+            "Something went wrong while processing Gdrive link😔.\n\n (Make sure that the gdrive link is not rate limited, is public link and not a folder)")
 
 
 async def ddl_mediainfo(message, url, isRaw):
     """
-    Generates Mediainfo from a Direct Download Link.
+    😇Generates Mediainfo from a Direct Download Link😇.
     """
 
     reply_msg = await message.reply_text(
-        "Generating Mediainfo, Please wait...", quote=True)
+        "😇Generating Mediainfo, Please wait...😇", quote=True)
     try:
         filename = re.search(".+/(.+)", url).group(1)
         if len(filename) > 60:
@@ -178,17 +178,17 @@ async def ddl_mediainfo(message, url, isRaw):
 
     except asyncio.TimeoutError:
         return await reply_msg.edit(
-            "Sorry! process failed due to timeout. Your process was taking too long to complete, hence it was cancelled." )
+            "😣Sorry! process failed due to timeout. Your process was taking too long to complete, hence it was cancelled😣." )
                	
     except Exception as error:
         LOGGER(__name__).error(error)
         return await reply_msg.edit(
-            "Something went wrong while generating Mediainfo from the given url.")
+            "😣Something went wrong while generating Mediainfo from the given url.😣")
 
 
 async def telegram_mediainfo(client, message, isRaw):
     """
-    Generates Mediainfo from a Telegram File.
+    🤓Generates Mediainfo from a Telegram File🤓.
     """
 
     reply_msg = await message.reply_text(
@@ -213,7 +213,7 @@ async def telegram_mediainfo(client, message, isRaw):
 
         else:
             return await message.reply_text(
-                "This type of media is not supported for generating Mediainfo.**",
+                "🙁This type of media is not supported for generating Mediainfo🙁.**",
                 quote=True)
 
         filename = str(media.file_name)
@@ -281,12 +281,12 @@ async def telegram_mediainfo(client, message, isRaw):
     except Exception as error:
         LOGGER(__name__).error(error)
         return await reply_msg.edit(
-            "Something went wrong while generating Mediainfo from replied Telegram file.")
+            "🙁Something went wrong while generating Mediainfo from replied Telegram file.🙁")
 
 
 @Client.on_message(filters.command(["mediainfo", "m"]) & check_auth)
 async def mediainfo(client, message: Message):
-    mediainfo_usage = f"**Generates mediainfo from Google Drive Links, Telegram files or direct download links. \n\nReply to any telegram file or just pass the link after the command.\n\nUse `--r` flag for raw Mediainfo in document format."
+    mediainfo_usage = f"**🤓Generates mediainfo from Google Drive Links, Telegram files or direct download links. \n\nReply to any telegram file or just pass the link after the command.\n\nUse `--r` flag for raw Mediainfo in document format🤓."
 
     if message.reply_to_message:
         isRaw = False
